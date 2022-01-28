@@ -1,0 +1,29 @@
+{
+  "name": "animodona",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "next": "12.0.7",
+    "next-connect": "^0.11.0",
+    "nextjs-cors": "^2.1.0",
+    "react": "17.0.2",
+    "react-audio-player": "^0.17.0",
+    "react-dom": "17.0.2",
+    "react-h5-audio-player": "^3.8.1",
+    "react-howler": "^5.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "eslint": "8.5.0",
+    "eslint-config-next": "12.0.7",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.8"
+  }
+}

@@ -1,0 +1,33 @@
+.rhap_container {
+  padding-top: 20px;
+  background-color: rgb(46, 59, 77);
+  border-radius: 15px;
+  box-shadow: rgb(31 41 55) 0 0 5px;
+}
+.rhap_progress-filled {
+  background-color: rgb(250 204 21);
+}
+.rhap_progress-indicator {
+  background: rgb(250 204 21);
+  border-radius: 50px;
+  box-shadow: rgba(134, 134, 134, 0.5) 0 0 5px;
+}
+.rhap_repeat-button {
+  color: rgb(250 204 21);
+  margin: 20px 0;
+}
+.rhap_time {
+  color: rgb(255, 255, 255);
+}
+.rhap_main-controls-button {
+  color: rgb(250 204 21);
+}
+.rhap_volume-button {
+  color: rgb(250 204 21);
+}
+.rhap_volume-bar {
+  background: rgb(255, 255, 255);
+}
+.rhap_volume-indicator {
+  background: rgb(250 204 21);
+}
