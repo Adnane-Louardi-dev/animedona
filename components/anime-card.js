@@ -39,7 +39,7 @@ const AnimeCard = ({ props }) => {
 
                     <div className="flex justify-center space-x-3 pt-3 text-sm font-medium">
                       <button
-                        className="mb-0 bg-gray-900 dark:bg-white dark:text-gray-800 px-5 py-2 shadow-xl font-nunito tracking-wider text-white rounded-full dark:focus:bg-yellow-500 focus:bg-yellow-500 focus:text-white dark:focus:text-white"
+                        className="mb-0 bg-gray-900 dark:bg-white dark:text-gray-800 focus:bg-yellow-500 focus:text-white px-5 py-2 shadow-xl font-nunito tracking-wider text-white rounded-full dark:focus:bg-yellow-500 focus:bg-yellow-500 focus:text-white dark:focus:text-white"
                         type="button"
                         aria-label="like"
                       >

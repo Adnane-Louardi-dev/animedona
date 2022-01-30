@@ -1,11 +1,22 @@
 import Image from "next/image";
-import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ThemeAnime from "../../components/theme-anime";
 import AnimePlaceholder from "../../components/anime-placeholder";
 import TopBar from "../../components/top-bar";
+// export async function getStaticProps({ anime }) {
+//   const { id } = anime;
+
+//   const animeData = await fetch(`/api/v1/anime/${id}`);
+
+//   return {
+//     props: {
+//       animeData,
+//     },
+//   };
+// }
 export default function Anime() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
@@ -31,6 +42,9 @@ export default function Anime() {
   }, []);
   return (
     <>
+      {/* <Head>
+        <title>{`Animedona - ${data.title.slice(-1)[0]}`} </title>
+      </Head> */}
       <TopBar />
       {/* <div className="fixed z-10 t-0 w-screen flex justify-between">
         <Link href="/" passHref>

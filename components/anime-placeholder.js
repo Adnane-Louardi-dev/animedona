@@ -14,11 +14,11 @@ export default function AnimePlaceholder() {
               <p className="h-7 w-40 bg-gray-300 dark:bg-gray-700 rounded-2xl"></p>
             </div>
           </div>
-          <div className="mx-6 my-5 h-10 w-full bg-gray-300 dark:bg-gray-800 rounded-2xl"></div>
+          <div className="mx-6 my-5 h-10 w-40 bg-gray-300 dark:bg-gray-800 rounded-2xl"></div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <div className="my-5">
+        <div className="my-2">
           <div className="flex justify-between items-center rounded-xl shadow-lg bg-white dark:bg-gray-600 py-4 px-4 mx-5 mb-3">
             <div className="flex items-center">
               <div className="bg-gray-300 dark:bg-gray-700 w-20 h-20 rounded-md"></div>
@@ -31,7 +31,7 @@ export default function AnimePlaceholder() {
             <div className="items-center p-3 h-6 w-12 bg-gray-300 dark:bg-gray-700 rounded-2xl"></div>
           </div>
         </div>
-        <div className="my-5">
+        <div className="my-2">
           <div className="flex justify-between items-center rounded-xl shadow-lg bg-white dark:bg-gray-600 py-4 px-4 mx-5 mb-3">
             <div className="flex items-center">
               <div className="bg-gray-300 dark:bg-gray-700 w-20 h-20 rounded-md"></div>
@@ -44,7 +44,7 @@ export default function AnimePlaceholder() {
             <div className="items-center p-3 h-6 w-12 bg-gray-300 dark:bg-gray-700 rounded-2xl"></div>
           </div>
         </div>
-        <div className="my-5">
+        <div className="my-2">
           <div className="flex justify-between items-center rounded-xl shadow-lg bg-white dark:bg-gray-600 py-4 px-4 mx-5 mb-3">
             <div className="flex items-center">
               <div className="bg-gray-300 dark:bg-gray-700 w-20 h-20 rounded-md"></div>
@@ -57,7 +57,7 @@ export default function AnimePlaceholder() {
             <div className="items-center p-3 h-6 w-12 bg-gray-300 dark:bg-gray-700 rounded-2xl"></div>
           </div>
         </div>
-        <div className="my-5">
+        <div className="my-2">
           <div className="flex justify-between items-center rounded-xl shadow-lg bg-white dark:bg-gray-600 py-4 px-4 mx-5 mb-3">
             <div className="flex items-center">
               <div className="bg-gray-300 dark:bg-gray-700 w-20 h-20 rounded-md"></div>

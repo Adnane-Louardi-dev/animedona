@@ -31,7 +31,7 @@ export default function ThemeAnime({ props }) {
               .catch((err) => console.log(err));
           };
           return (
-            <div className="my-5" key={theme_id}>
+            <div className="my-2" key={theme_id}>
               <div className="flex justify-between items-center rounded-xl shadow-lg bg-white dark:bg-gray-800 py-4 px-4 mx-5 mb-3">
                 <div className="flex items-center">
                   <div className="relative w-20 h-20 rounded-md">
