@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
-import AudioPlayer from "react-h5-audio-player";
+// import { AudioPlayer } from "react-h5-audio-player";
 import ThemeListPlaceholder from "./theme-list-placeholder";
 import axios from "axios";
 export default function ThemesList({ data }) {
@@ -11,7 +11,7 @@ export default function ThemesList({ data }) {
   useEffect(() => {
     setAnimeThemes([]);
     setData(data);
-  }, [data]);
+  }, [Data, data]);
   const audioRef = useRef(audioRef);
   Data?.anime.map((anime, i) => {
     const concatIt = () => {
@@ -109,11 +109,7 @@ export default function ThemesList({ data }) {
           <ThemeListPlaceholder />
         </div>
       )}
-      {PlayerOn ? (
-        <div className="fixed z-10 bottom-0 p-3 w-full">
-          <AudioPlayer ref={audioRef} autoPlay src={audioSrc} showJumpControls />
-        </div>
-      ) : null}
+      {/* <div className="fixed z-10 bottom-0 p-3 w-full">{PlayerOn ? <AudioPlayer ref={audioRef} autoPlay src={audioSrc} showJumpControls /> : null}</div> */}
     </>
   );
 }

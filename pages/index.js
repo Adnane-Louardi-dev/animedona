@@ -1,12 +1,10 @@
 import Head from "next/head";
 import AnimeCardPlaceholder from "../components/anime-card-placeholder";
-import ThemeListPlaceholder from "../components/theme-list-placeholder";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState, useEffect, useRef } from "react";
 import TopBar from "../components/top-bar";
 import AnimeCard from "../components/anime-card";
-import AudioPlayer from "react-h5-audio-player";
 import ThemesList from "../components/themes-list";
 
 export default function Home() {
