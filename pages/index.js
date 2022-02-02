@@ -158,13 +158,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        {loading ? (
-          <>
-            <div className="noScrollbar py-3 mb-2 font-oxygen flex overflow-x-scroll">
-              <ThemesList data={DataSeason} />
-            </div>
-          </>
-        ) : null}
+        {loading && <ThemesList data={DataSeason} />}
       </div>
 
       <div className="pt-2 relative mx-auto">
