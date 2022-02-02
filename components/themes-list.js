@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import ThemeListPlaceholder from "./theme-list-placeholder";
 import axios from "axios";
 export default function ThemesList({ data }) {
-  console.log(data);
   const [Data, setData] = useState(data);
   const [animeThemes, setAnimeThemes] = useState([]);
   const [audioSrc, setAudioSrc] = useState("");
@@ -26,6 +25,7 @@ export default function ThemesList({ data }) {
       {animeThemes.length > 0 ? (
         <>
           {animeThemes.map((item) => {
+            console.log(item);
             const { cover, theme } = item;
 
             const play = () => {
