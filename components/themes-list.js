@@ -4,30 +4,28 @@ import React, { useState, useRef, useEffect } from "react";
 import ThemeListPlaceholder from "./theme-list-placeholder";
 import axios from "axios";
 export default function ThemesList({ data }) {
+  console.log(data);
   const [Data, setData] = useState(data);
   const [animeThemes, setAnimeThemes] = useState([]);
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
-  useEffect(() => {
-    setAnimeThemes([]);
-    setData(data);
-  }, [Data, data]);
   const audioRef = useRef(audioRef);
-  Data?.anime.map((anime, i) => {
-    const concatIt = () => {
-      const { themes, cover } = anime;
-      themes?.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
-    };
-    if (animeThemes.length < 20) {
-      concatIt();
+  useEffect(() => {
+    setData(data);
+    setAnimeThemes([]);
+  }, [data]);
+  Data?.anime.slice(0, 3).map((anime, i) => {
+    const { cover } = anime;
+    if (animeThemes.length < 10) {
+      anime?.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
+      console.log(animeThemes.length);
     }
   });
-
   return (
     <>
-      {animeThemes.length > 1 ? (
+      {animeThemes.length > 0 ? (
         <>
-          {animeThemes?.map((item, i) => {
+          {animeThemes.map((item) => {
             const { cover, theme } = item;
 
             const play = () => {
@@ -49,7 +47,7 @@ export default function ThemesList({ data }) {
             };
 
             return (
-              <div className="h-48 w-40 mr-3" key={i}>
+              <div className="h-48 w-40 mr-3" key={theme.theme_id}>
                 <div className="group rounded-3xl relative h-48 w-40 mx-3 shadow-md ">
                   <div className=" opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl">
                     {PlayerOn ? (
