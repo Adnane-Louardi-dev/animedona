@@ -24,35 +24,35 @@ export default function ThemesList({ data }) {
       {animeThemes.length > 5 ? (
         <>
           {animeThemes.map((item) => {
-            console.log(item);
+            console.log("done " + item);
             const { cover, theme } = item;
 
-            // const play = () => {
-            //   setPlayerOn(false);
-            //   axios
-            //     .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
-            //     .then((res) => {
-            //       if (res) {
-            //         const { audio } = res.data;
-            //         setAudioSrc(audio);
-            //         setPlayerOn(true);
-            //         console.log(audioSrc);
-            //       } else {
-            //         console.log("no res");
-            //       }
-            //     })
+            const play = () => {
+              setPlayerOn(false);
+              axios
+                .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
+                .then((res) => {
+                  if (res) {
+                    const { audio } = res.data;
+                    setAudioSrc(audio);
+                    setPlayerOn(true);
+                    console.log(audioSrc);
+                  } else {
+                    console.log("no res");
+                  }
+                })
 
-            //     .catch((err) => console.log(err));
-            // };
+                .catch((err) => console.log(err));
+            };
 
             return (
               <div className="h-48 w-40 mr-3" key={theme.theme_id}>
                 <div className="group rounded-3xl relative h-48 w-40 mx-3 shadow-md ">
                   <div className=" opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl">
-                    {/* {PlayerOn ? (
+                    {PlayerOn ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        // onClick={() => play()}
+                        onClick={() => play()}
                         className="h-16 w-16 text-yellow-500"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -63,7 +63,7 @@ export default function ThemesList({ data }) {
                     ) : (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        // onClick={() => setPlayerOn(!PlayerOn)}
+                        onClick={() => setPlayerOn(!PlayerOn)}
                         className="h-16 w-16 text-yellow-500"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -77,7 +77,7 @@ export default function ThemesList({ data }) {
                         />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                    )} */}
+                    )}
                   </div>
                   <div className="flex absolute bg-transparent t-0 b-0 z-10 h-48 w-40 flex-col justify-between">
                     <div className="flex  justify-between m-3">
@@ -91,7 +91,7 @@ export default function ThemesList({ data }) {
                     </div>
                   </div>
                   <div className="relative brightness-50 bg-gray-300 h-48 w-40 rounded-3xl overflow-hidden">
-                    {/* <Image layout="fill" objectFit="cover" src={cover} alt="pic" className="blur-xs " /> */}
+                    <Image layout="fill" objectFit="cover" src={cover} alt="pic" className="blur-xs " />
                   </div>
                 </div>
               </div>
