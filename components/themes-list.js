@@ -13,16 +13,15 @@ export default function ThemesList({ data }) {
     setData(data);
     setAnimeThemes([]);
   }, [data]);
-  Data?.anime.slice(0, 3).map((anime, i) => {
+  Data?.anime.slice(0, 3).map((anime) => {
     const { cover } = anime;
     if (animeThemes.length < 10) {
       anime?.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
-      console.log(animeThemes.length);
     }
   });
   return (
     <>
-      {animeThemes.length > 0 ? (
+      {animeThemes.length > 5 ? (
         <>
           {animeThemes.map((item) => {
             console.log(item);
