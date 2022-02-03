@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -7,8 +6,6 @@ import axios from "axios";
 import AnimeCard from "../../components/anime-card";
 import TopBar from "../../components/top-bar";
 import AnimeCardPlaceholder from "../../components/anime-card-placeholder";
-import ThemesList from "../../components/themes-list";
-import ThemeListPlaceholder from "../../components/theme-list-placeholder";
 
 export default function Search() {
   const [loading, setLoading] = useState(false);
@@ -99,9 +96,6 @@ export default function Search() {
 
       {loading ? (
         <div className="pt-2 relative text-gray-600">
-          <div className="noScrollbar py-3 mb-2 font-oxygen flex overflow-x-scroll">
-            <ThemesList data={data} />
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             <>
               {data?.anime.map((anime, i) => {
@@ -118,12 +112,6 @@ export default function Search() {
         </div>
       ) : (
         <>
-          <div className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-          </div>
           <AnimeCardPlaceholder />
           <AnimeCardPlaceholder />
           <AnimeCardPlaceholder />
