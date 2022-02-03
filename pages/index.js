@@ -6,7 +6,6 @@ import React, { useState, useEffect, useRef } from "react";
 import TopBar from "../components/top-bar";
 import AnimeCard from "../components/anime-card";
 import ThemesList from "../components/themes-list";
-import ThemeListPlaceholder from "../components/theme-list-placeholder";
 
 export default function Home() {
   const router = useRouter();
@@ -16,7 +15,6 @@ export default function Home() {
   const [data, setData] = useState();
   //data of specific season
   const [DataSeason, setDataSeason] = useState();
-  const [animeThemes, setAnimeThemes] = useState([]);
   //search input value
   const [searchQuery, setSearchQuery] = useState("");
   //input reference
@@ -40,12 +38,6 @@ export default function Home() {
       .catch((err) => console.log(err));
     return () => setData();
   }, []);
-  DataSeason?.anime.slice(0, 3).map((anime) => {
-    const { cover } = anime;
-    if (animeThemes.length < 10) {
-      anime?.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
-    }
-  });
   return (
     <>
       <Head>
@@ -166,17 +158,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        {}
-        {loading && animeThemes.length > 1 ? (
-          <ThemesList data={animeThemes} />
-        ) : (
-          <div className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-            <ThemeListPlaceholder />
-          </div>
-        )}
+        {loading ? <ThemesList data={DataSeason} /> : null}
       </div>
 
       <div className="pt-2 relative mx-auto">
