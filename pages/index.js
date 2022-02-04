@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`https://animethemes-api.herokuapp.com/api/v1/season/2020`);
   const Data = await res.json();
-
+  console.log(Data);
   // Pass data to the page via props
   return { props: { Data } };
 }
@@ -28,30 +28,10 @@ export default function Home({ Data }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setData(Data?.seasons[3]);
+    setData(Data);
+    //set fall season as a initial data
+    setDataSeason(Data?.seasons[3]);
     setLoading(true);
-    if (data) {
-      //set fall season as a initial data
-      setDataSeason(Data?.seasons[3]);
-      setLoading(true);
-    } else {
-      console.log("no Data");
-    }
-    // setLoading(!loading);
-    // axios
-    //   .get("/api/v1/season/2020")
-    //   .then((res) => {
-    //     const { data } = res;
-    //     if (res) {
-    //       setData(data);
-    //       //set fall season as a initial data
-    //       setDataSeason(data?.seasons[3]);
-    //       setLoading(true);
-    //     } else {
-    //       console.log("no res");
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
     return () => setData();
   }, []);
   return (
