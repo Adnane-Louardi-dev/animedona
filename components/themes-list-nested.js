@@ -2,27 +2,27 @@ import Image from "next/image";
 import axios from "axios";
 import React, { useState } from "react";
 
-export default function ThemesListNested({ props }) {
+export default function ThemesListNested({ data }) {
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
-  const { cover, theme } = props;
-
+  const { cover, theme } = data;
+  console.log(data);
   const play = () => {
     setPlayerOn(false);
-    axios
-      .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
-      .then((res) => {
-        if (res) {
-          const { audio } = res.data;
-          setAudioSrc(audio);
-          setPlayerOn(true);
-          console.log(audioSrc);
-        } else {
-          console.log("no res");
-        }
-      })
+    // axios
+    //   .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
+    //   .then((res) => {
+    //     if (res) {
+    //       const { audio } = res.data;
+    //       setAudioSrc(audio);
+    //       setPlayerOn(true);
+    //       console.log(audioSrc);
+    //     } else {
+    //       console.log("no res");
+    //     }
+    //   })
 
-      .catch((err) => console.log(err));
+    //   .catch((err) => console.log(err));
   };
   return (
     <div className="h-48 w-40 mr-3">

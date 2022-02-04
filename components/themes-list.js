@@ -24,11 +24,9 @@ export default function ThemesList({ data }) {
       {animeThemes.length > 1 ? (
         <ul className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
           {animeThemes.map((item, i) => {
-            console.log(item, i);
             return (
               <li key={i}>
-                <p>hiloooo</p>
-                <ThemesListNested props={item} />
+                <ThemesListNested data={item} />
               </li>
             );
           })}
