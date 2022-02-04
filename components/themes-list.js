@@ -2,7 +2,6 @@ import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 // import { AudioPlayer } from "react-h5-audio-player";
 import ThemeListPlaceholder from "./theme-list-placeholder";
-import axios from "axios";
 import ThemesListNested from "./themes-list-nested";
 export default function ThemesList({ data }) {
   const [Data, setData] = useState(data);
@@ -10,10 +9,10 @@ export default function ThemesList({ data }) {
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
   const audioRef = useRef(audioRef);
-  useEffect(() => {
-    setData(data);
-    setAnimeThemes([]);
-  }, [data]);
+  // useEffect(() => {
+  //   setData(data);
+  //   setAnimeThemes([]);
+  // }, [data]);
   Data?.anime.slice(0, 3).map((anime) => {
     const { cover } = anime;
     if (animeThemes.length < 10) {
