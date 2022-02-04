@@ -6,8 +6,15 @@ import React, { useState, useEffect, useRef } from "react";
 import TopBar from "../components/top-bar";
 import AnimeCard from "../components/anime-card";
 import ThemesList from "../components/themes-list";
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://animethemes-api.herokuapp.com/api/v1/season/2020`);
+  const Data = await res.json();
 
-export default function Home() {
+  // Pass data to the page via props
+  return { props: { Data } };
+}
+export default function Home({ Data }) {
   const router = useRouter();
   //loading component
   const [loading, setLoading] = useState(false);
@@ -21,21 +28,30 @@ export default function Home() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setLoading(!loading);
-    axios
-      .get("/api/v1/season/2020")
-      .then((res) => {
-        const { data } = res;
-        if (res) {
-          setData(data);
-          //set fall season as a initial data
-          setDataSeason(data?.seasons[3]);
-          setLoading(true);
-        } else {
-          console.log("no res");
-        }
-      })
-      .catch((err) => console.log(err));
+    setData(Data?.seasons[3]);
+    setLoading(true);
+    if (data) {
+      //set fall season as a initial data
+      setDataSeason(Data?.seasons[3]);
+      setLoading(true);
+    } else {
+      console.log("no Data");
+    }
+    // setLoading(!loading);
+    // axios
+    //   .get("/api/v1/season/2020")
+    //   .then((res) => {
+    //     const { data } = res;
+    //     if (res) {
+    //       setData(data);
+    //       //set fall season as a initial data
+    //       setDataSeason(data?.seasons[3]);
+    //       setLoading(true);
+    //     } else {
+    //       console.log("no res");
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
     return () => setData();
   }, []);
   return (
@@ -158,7 +174,11 @@ export default function Home() {
             </button>
           </div>
         </div>
-        {loading ? <ThemesList data={DataSeason} /> : null}
+        {loading ? (
+          <React.StrictMode>
+            <ThemesList data={DataSeason} />
+          </React.StrictMode>
+        ) : null}
       </div>
 
       <div className="pt-2 relative mx-auto">
