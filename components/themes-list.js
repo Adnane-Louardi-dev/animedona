@@ -1,29 +1,26 @@
 import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 // import { AudioPlayer } from "react-h5-audio-player";
 import ThemeListPlaceholder from "./theme-list-placeholder";
 import ThemesListNested from "./themes-list-nested";
-export default function ThemesList({ data }) {
-  const [Data, setData] = useState();
+const ThemesList = ({ data }) => {
+  const [Data, setData] = useState(data);
   const [animeThemes, setAnimeThemes] = useState([]);
-  const [audioSrc, setAudioSrc] = useState("");
-  const [PlayerOn, setPlayerOn] = useState(false);
-  const audioRef = useRef(audioRef);
-  const reform = () => {
-    data?.anime.slice(0, 3).map((anime) => {
-      const { cover } = anime;
-      if (animeThemes.length < 10) {
-        anime.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
-      }
-    });
-  };
-  if (Data) {
-    reform();
-  }
-  useEffect(() => {
+  // const [audioSrc, setAudioSrc] = useState("");
+  // const [PlayerOn, setPlayerOn] = useState(false);
+  // const audioRef = useRef(audioRef);
+
+  useLayoutEffect(() => {
     setData(data);
     setAnimeThemes([]);
   }, [data]);
+
+  data?.slice(0, 3).map((anime) => {
+    const { cover } = anime;
+    if (animeThemes.length < 10) {
+      anime.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
+    }
+  });
 
   return (
     <>
@@ -48,4 +45,5 @@ export default function ThemesList({ data }) {
       {/* <div className="fixed z-10 bottom-0 p-3 w-full">{PlayerOn ? <AudioPlayer ref={audioRef} autoPlay src={audioSrc} showJumpControls /> : null}</div> */}
     </>
   );
-}
+};
+export default ThemesList;

@@ -21,7 +21,7 @@ export default function Home({ Data }) {
   //data of all seasons
   const [data, setData] = useState();
   //data of specific season
-  const [DataSeason, setDataSeason] = useState();
+  const [DataSeason, setDataSeason] = useState(Data?.seasons[3].anime);
   //search input value
   const [searchQuery, setSearchQuery] = useState("");
   //input reference
@@ -30,7 +30,7 @@ export default function Home({ Data }) {
   useEffect(() => {
     setData(Data);
     //set fall season as a initial data
-    setDataSeason(Data?.seasons[3]);
+    setDataSeason(Data?.seasons[3].anime);
     setLoading(true);
     return () => setData();
   }, []);
@@ -154,31 +154,25 @@ export default function Home({ Data }) {
             </button>
           </div>
         </div>
-        {loading ? (
-          <React.StrictMode>
-            <ThemesList data={DataSeason} />
-          </React.StrictMode>
-        ) : null}
       </div>
 
-      <div className="pt-2 relative mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          {loading && DataSeason ? (
-            <>
-              {DataSeason?.anime.map((anime, i) => {
-                return <AnimeCard props={anime} key={i} />;
-              })}
-            </>
-          ) : (
-            <>
-              <AnimeCardPlaceholder />
-              <AnimeCardPlaceholder />
-              <AnimeCardPlaceholder />
-              <AnimeCardPlaceholder />
-            </>
-          )}
+      {loading && DataSeason ? (
+        <div className="pt-2 relative mx-auto">
+          <ThemesList data={DataSeason.slice(0, 10)} />
+          <div className="pt-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {DataSeason.slice(0, 10).map((anime, i) => {
+              return <AnimeCard props={anime} key={i} />;
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <AnimeCardPlaceholder />
+          <AnimeCardPlaceholder />
+          <AnimeCardPlaceholder />
+          <AnimeCardPlaceholder />
+        </>
+      )}
     </>
   );
 }
