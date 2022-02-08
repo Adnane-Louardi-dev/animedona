@@ -6,7 +6,7 @@ export default function ThemesListNested({ data }) {
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
   const { cover, theme } = data;
-  console.log(data);
+  // console.log(data);
   const play = () => {
     setPlayerOn(false);
     // axios

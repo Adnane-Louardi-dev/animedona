@@ -13,6 +13,7 @@ const ThemesList = ({ data }) => {
   useLayoutEffect(() => {
     setData(data);
     setAnimeThemes([]);
+    console.log(data);
   }, [data]);
 
   data?.slice(0, 3).map((anime) => {
@@ -27,6 +28,7 @@ const ThemesList = ({ data }) => {
       {animeThemes.length > 0 ? (
         <ul className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
           {animeThemes.map((item, i) => {
+            console.log(item);
             return (
               <li key={i}>
                 <ThemesListNested data={item} />
