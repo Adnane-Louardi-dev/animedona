@@ -113,7 +113,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[0]);
+                setDataSeason(data?.seasons[0].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -124,7 +124,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[1]);
+                setDataSeason(data?.seasons[1].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -135,7 +135,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[2]);
+                setDataSeason(data?.seasons[2].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -146,7 +146,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[3]);
+                setDataSeason(data?.seasons[3].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
