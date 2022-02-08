@@ -16,7 +16,7 @@ const ThemesList = ({ data }) => {
     console.log(data);
   }, [data]);
 
-  Data?.slice(0, 3).map((anime) => {
+  data?.slice(0, 3).map((anime) => {
     const { cover } = anime;
     if (animeThemes.length < 10) {
       anime.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
@@ -26,16 +26,16 @@ const ThemesList = ({ data }) => {
   return (
     <>
       {animeThemes.length > 0 ? (
-        <ul className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
-          {animeThemes.map((item, i) => {
+        <div className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
+          {/* {animeThemes.map((item, i) => {
             console.log(item);
             return (
-              <li key={i}>
-                <ThemesListNested data={item} />
-              </li>
+              <div key={i}> */}
+          <ThemesListNested animes={animeThemes} />
+          {/* </div>
             );
-          })}
-        </ul>
+          })} */}
+        </div>
       ) : (
         <div className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
           <ThemeListPlaceholder />
