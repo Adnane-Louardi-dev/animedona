@@ -1,14 +1,14 @@
 import Image from "next/image";
-// import axios from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 
-export default function ThemesListNested({ data }) {
-  const [audioSrc, setAudioSrc] = useState("");
+const ThemesListNested = ({ data }) => {
+  // const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
   const { cover, theme } = data;
   // console.log(data);
   const play = () => {
-    setPlayerOn(false);
+    // setPlayerOn(false);
     // axios
     //   .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
     //   .then((res) => {
@@ -21,7 +21,6 @@ export default function ThemesListNested({ data }) {
     //       console.log("no res");
     //     }
     //   })
-
     //   .catch((err) => console.log(err));
   };
   return (
@@ -75,4 +74,5 @@ export default function ThemesListNested({ data }) {
       </div>
     </div>
   );
-}
+};
+export default ThemesListNested;

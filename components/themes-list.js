@@ -16,7 +16,7 @@ const ThemesList = ({ data }) => {
     console.log(data);
   }, [data]);
 
-  data?.slice(0, 3).map((anime) => {
+  Data?.slice(0, 3).map((anime) => {
     const { cover } = anime;
     if (animeThemes.length < 10) {
       anime.themes.map((theme) => setAnimeThemes(animeThemes.push({ cover: cover, theme: theme })));
