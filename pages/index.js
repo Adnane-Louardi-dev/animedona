@@ -1,16 +1,16 @@
 import Head from "next/head";
 import AnimeCardPlaceholder from "../components/anime-card-placeholder";
-import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState, useEffect, useRef } from "react";
 import TopBar from "../components/top-bar";
 import AnimeCard from "../components/anime-card";
 import ThemesList from "../components/themes-list";
+import ThemeListPlaceholder from "../components/theme-list-placeholder";
 export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`https://animethemes-api.herokuapp.com/api/v1/season/2020`);
   const Data = await res.json();
-  console.log(Data);
+
   // Pass data to the page via props
   return { props: { Data } };
 }
@@ -19,21 +19,31 @@ export default function Home({ Data }) {
   //loading component
   const [loading, setLoading] = useState(false);
   //data of all seasons
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   //data of specific season
-  const [DataSeason, setDataSeason] = useState(Data?.seasons[3].anime);
+  const [DataSeason, setDataSeason] = useState([]);
+  //data of anime themes
+  const [animeThemes, setAnimeThemes] = useState([]);
   //search input value
   const [searchQuery, setSearchQuery] = useState("");
   //input reference
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setData(Data);
     //set fall season as a initial data
     setDataSeason(Data?.seasons[3].anime);
+
+    // setAnimeThemes([]);
+
+    //create array that's contain cover,theme from Data info
+    DataSeason?.slice(10, 15).map((anime) => {
+      anime.themes.forEach((theme) => animeThemes.push({ cover: anime.cover, theme: theme }));
+    });
+
     setLoading(true);
     return () => setData();
-  }, []);
+  }, [Data]);
+
   return (
     <>
       <Head>
@@ -101,8 +111,7 @@ export default function Home({ Data }) {
                   setDataSeason();
                 }
                 //concat all seasons -still a bug-
-                data?.seasons.map((season) => setDataSeason({ anime: season.anime }));
-                console.log(DataSeason);
+                Data?.seasons.map((season) => setDataSeason({ anime: season.anime }));
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg whitespace-nowrap"
             >
@@ -113,7 +122,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[0].anime);
+                setDataSeason(Data?.seasons[0].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -124,7 +133,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[1].anime);
+                setDataSeason(Data?.seasons[1].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -135,7 +144,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[2].anime);
+                setDataSeason(Data?.seasons[2].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -146,7 +155,7 @@ export default function Home({ Data }) {
                 if (DataSeason) {
                   setDataSeason();
                 }
-                setDataSeason(data?.seasons[3].anime);
+                setDataSeason(Data?.seasons[3].anime);
               }}
               className="font-oxygen text-lg px-3 py-1 ml-4 md:mx-5 bg-violet-600 dark:bg-violet-900 text-white rounded-full shadow-lg"
             >
@@ -156,17 +165,27 @@ export default function Home({ Data }) {
         </div>
       </div>
 
-      {loading && DataSeason ? (
+      {loading && animeThemes.length > 0 ? (
         <div className="pt-2 relative mx-auto">
-          <ThemesList data={DataSeason.slice(0, 10)} />
+          <ThemesList data={animeThemes} />
           <div className="pt-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {DataSeason.slice(0, 10).map((anime, i) => {
-              return <AnimeCard props={anime} key={i} />;
+              return (
+                <div key={i}>
+                  <AnimeCard props={anime} />
+                </div>
+              );
             })}
           </div>
         </div>
       ) : (
         <>
+          <div className="noScrollbar mb-2 font-oxygen flex overflow-x-scroll">
+            <ThemeListPlaceholder />
+            <ThemeListPlaceholder />
+            <ThemeListPlaceholder />
+            <ThemeListPlaceholder />
+          </div>
           <AnimeCardPlaceholder />
           <AnimeCardPlaceholder />
           <AnimeCardPlaceholder />

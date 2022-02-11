@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useRef } from "react";
@@ -30,6 +29,7 @@ export default function Search() {
         }
       })
       .catch((err) => console.log(err));
+    return () => setData();
   }, [searchQuery]);
 
   return (
@@ -100,11 +100,9 @@ export default function Search() {
             <>
               {data?.anime.map((anime, i) => {
                 return (
-                  <Link href={`/anime/${anime.mal_id}`} key={i}>
-                    <a>
-                      <AnimeCard props={anime} />
-                    </a>
-                  </Link>
+                  <div key={i}>
+                    <AnimeCard props={anime} />
+                  </div>
                 );
               })}
             </>
