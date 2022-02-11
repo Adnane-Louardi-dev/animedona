@@ -39,10 +39,7 @@ const ThemesList = ({ data }) => {
           return (
             <div className="h-48 w-40 mr-3" key={i}>
               <div className="group rounded-3xl relative h-48 w-40 mx-3 shadow-md ">
-                <div
-                  onClick={() => {}}
-                  className="opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
-                >
+                <div className="opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-20 group-hover:backdrop-brightness-50 rounded-3xl">
                   {PlayerOn ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +84,7 @@ const ThemesList = ({ data }) => {
                   </div>
                 </div>
                 <div className="relative brightness-50 bg-gray-300 h-48 w-40 rounded-3xl overflow-hidden">
-                  <Image layout="fill" objectFit="cover" src={cover} alt="pic" className="blur-xs " />
+                  <Image layout="fill" objectFit="cover" src={cover} alt="pic" className="blur-xs group-hover:blur-sm" />
                 </div>
               </div>
             </div>
@@ -100,7 +97,7 @@ const ThemesList = ({ data }) => {
         {PlayerHolderOn ? (
           <div className="flex flex-col justify-between h-32 py-5 rounded-xl bg-gray-300 dark:bg-gray-700">
             <div className="flex justify-between ">
-              <div className=" w-28 mx-4 p-1 whitespace-nowrap bg-yellow-600 dark:bg-yellow-600 rounded-xl text-white font-oxygen">Please wait...</div>
+              <div className=" w-28 mx-4 px-2 py-1 whitespace-nowrap bg-yellow-600 dark:bg-yellow-600 rounded-xl text-white font-oxygen">Please wait...</div>
               <div className="h-8 w-8 mx-4 bg-gray-400 dark:bg-gray-500 rounded-xl"></div>
             </div>
             <div className="flex ">
