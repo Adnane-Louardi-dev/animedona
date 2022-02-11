@@ -7,6 +7,7 @@ const ThemesList = ({ data }) => {
   const [Data, setData] = useState(data);
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
+  const [PlayerHolderOn, setPlayerHolderOn] = useState(false);
 
   useEffect(() => {
     setData(data);
@@ -20,6 +21,7 @@ const ThemesList = ({ data }) => {
           //get audio with axios
           const play = () => {
             setPlayerOn(false);
+            setPlayerHolderOn(true);
             axios
               .get(`/api/v1/theme/${theme.theme_id}/0/audio`)
               .then((res) => {
@@ -27,6 +29,7 @@ const ThemesList = ({ data }) => {
                   const { audio } = res.data;
                   setAudioSrc(audio);
                   setPlayerOn(true);
+                  setPlayerHolderOn(false);
                 } else {
                   console.log("no res");
                 }
@@ -37,15 +40,8 @@ const ThemesList = ({ data }) => {
             <div className="h-48 w-40 mr-3" key={i}>
               <div className="group rounded-3xl relative h-48 w-40 mx-3 shadow-md ">
                 <div
-                  onClick={(e) => {
-                    let numberButtons = document.getElementsByClassName("opacity-100");
-
-                    for (let i = 0; i < numberButtons.length; i++) {
-                      numberButtons[i].classList.remove("opacity-100");
-                      e.currentTarget.classList.add("opacity-100");
-                    }
-                  }}
-                  className="opacity-0 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
+                  onClick={() => {}}
+                  className="opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
                 >
                   {PlayerOn ? (
                     <svg
@@ -99,7 +95,22 @@ const ThemesList = ({ data }) => {
         })}
       </div>
 
-      <div className="fixed z-10 bottom-0 p-3 w-full">{PlayerOn ? <AudioPlayer autoPlay src={audioSrc} showJumpControls /> : null}</div>
+      <div className="fixed z-10 bottom-0 p-3 w-full">
+        {PlayerOn ? <AudioPlayer autoPlay src={audioSrc} showJumpControls /> : null}
+        {PlayerHolderOn ? (
+          <div className="flex flex-col justify-between h-32 py-5 rounded-xl bg-gray-300 dark:bg-gray-700">
+            <div className="flex justify-between ">
+              <div className=" w-28 mx-4 p-1 whitespace-nowrap bg-yellow-600 dark:bg-yellow-600 rounded-xl text-white font-oxygen">Please wait...</div>
+              <div className="h-8 w-8 mx-4 bg-gray-400 dark:bg-gray-500 rounded-xl"></div>
+            </div>
+            <div className="flex ">
+              <div className="m-3 bg-gray-400 dark:bg-gray-500 h-2 grow rounded-full"></div>
+              <div className="bg-gray-400 dark:bg-gray-500 h-8 w-8 grow-0 rounded-full"></div>
+              <div className="m-3 bg-gray-400 dark:bg-gray-500 h-2 grow rounded-full"></div>
+            </div>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
