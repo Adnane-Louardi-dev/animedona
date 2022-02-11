@@ -36,11 +36,24 @@ const ThemesList = ({ data }) => {
           return (
             <div className="h-48 w-40 mr-3" key={i}>
               <div className="group rounded-3xl relative h-48 w-40 mx-3 shadow-md ">
-                <div className=" opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl">
+                <div
+                  onClick={(e) => {
+                    var numberButtons = document.getElementsByClassName("opacity-100");
+                    if (numberButtons.length > 0) {
+                      for (var i = 0; i < numberButtons.length; i++) {
+                        numberButtons[i].classList.remove("opacity-100");
+                      }
+                    }
+                    e.currentTarget.classList.add("opacity-100");
+                  }}
+                  className=" opacity-0 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
+                >
                   {PlayerOn ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      onClick={() => play()}
+                      onClick={() => {
+                        setPlayerOn(!PlayerOn);
+                      }}
                       className="h-16 w-16 text-yellow-500"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -51,7 +64,7 @@ const ThemesList = ({ data }) => {
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      onClick={() => setPlayerOn(!PlayerOn)}
+                      onClick={() => play()}
                       className="h-16 w-16 text-yellow-500"
                       fill="none"
                       viewBox="0 0 24 24"
