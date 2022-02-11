@@ -42,7 +42,7 @@ export default function Home({ Data }) {
 
     setLoading(true);
     return () => setData();
-  }, [Data]);
+  }, [Data, DataSeason]);
 
   return (
     <>
