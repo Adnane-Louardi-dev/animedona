@@ -46,7 +46,7 @@ const ThemesList = ({ data }) => {
                     }
                     e.currentTarget.classList.add("opacity-100");
                   }}
-                  className=" opacity-0 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
+                  className="opacity-0 group-hover:opacity-100 flex flex-col absolute t-0 b-0 h-48 w-40 z-20 justify-center items-center backdrop-brightness-50 rounded-3xl"
                 >
                   {PlayerOn ? (
                     <svg
