@@ -11,14 +11,15 @@ export default function Search() {
   const [data, setData] = useState();
   const inputRef = useRef("");
   const router = useRouter();
+  const { search } = router.query;
 
-  const [searchQuery, setSearchQuery] = useState(router.query.search);
-  const [PreSearchQuery, setPreSearchQuery] = useState(searchQuery);
-  console.log(searchQuery);
+  const [PreSearchQuery, setPreSearchQuery] = useState(search);
+  console.log(search);
+
   useEffect(() => {
     setLoading(false);
     axios
-      .get(`/api/v1/search/${searchQuery}`)
+      .get(`/api/v1/search/${search}`)
       .then((res) => {
         const { data } = res;
         if (res) {
@@ -30,12 +31,12 @@ export default function Search() {
       })
       .catch((err) => console.log(err));
     return () => setData();
-  }, [searchQuery]);
+  }, [search]);
 
   return (
     <>
       <Head>
-        <title>{`Animedona|search for ${searchQuery}`}</title>
+        <title>{`Animedona|search for ${search}`}</title>
       </Head>
       <TopBar />
       <div className="flex mx-auto p-2 my-5">
@@ -43,8 +44,8 @@ export default function Search() {
           <button
             onClick={() => {
               setSearchQuery(PreSearchQuery);
-              if (searchQuery) {
-                router.push(`/search/${searchQuery}`);
+              if (search) {
+                router.push(`/search/${search}`);
               }
             }}
             aria-label="search"

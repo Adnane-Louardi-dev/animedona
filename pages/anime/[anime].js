@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,11 +8,12 @@ import ThemeAnime from "../../components/theme-anime";
 import AnimePlaceholder from "../../components/anime-placeholder";
 import TopBar from "../../components/top-bar";
 export default function Anime() {
+  const router = useRouter();
+  const { anime } = router.query;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
-  const router = useRouter();
-  const [anime, setQuery] = useState(router.query.anime);
-  console.log(anime);
+
+  console.log(data);
   useEffect(() => {
     setLoading(!loading);
     axios
@@ -27,32 +30,15 @@ export default function Anime() {
 
       .catch((err) => console.log(err));
     return () => setData();
-  }, []);
+  }, [anime]);
   return (
     <>
-      {/* <Head>
-        <title>{`Animedona - ${data.title.slice(-1)[0]}`} </title>
-      </Head> */}
       <TopBar />
-      {/* <div className="fixed z-10 t-0 w-screen flex justify-between">
-        <Link href="/" passHref>
-          <div className="relative h-16 w-40 mt-3 -ml-2">
-            <Image src={"/animodona-logo.png"} layout="fill" objectFit="cover" alt="cover" className="" />
-          </div>
-        </Link>
-        <button onClick={() => router.push("/")} className="m-5 flex justify-center items-center h-9 w-9 bg-violet-500 rounded-lg shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" className="text-white h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path
-              fillRule="evenodd"
-              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div> */}
-
-      {data && data.themes ? (
+      {data && data ? (
         <>
+          <Head>
+            <title>{`Animedona | ${data.title.slice(-1)[0]}`} </title>
+          </Head>
           <div className="relative md:mx-auto md:flex md:justify-center md:w-3/4">
             <div className="flex justify-center pb-12 px-5">
               <div className="relative w-1/2 ">
@@ -93,7 +79,9 @@ export default function Anime() {
                     />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <h1 className="font-lato my-2 mx-1 text-md whitespace-nowrap truncate">watch anime opening</h1>
+                  <Link href={data.themes[0].mirrors[0].mirror} passHref>
+                    <h1 className="font-lato my-2 mx-1 text-md whitespace-nowrap truncate">watch anime opening</h1>
+                  </Link>
                 </button>
               </div>
             </div>
