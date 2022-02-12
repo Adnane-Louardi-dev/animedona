@@ -7,6 +7,8 @@ import axios from "axios";
 import ThemeAnime from "../../components/theme-anime";
 import AnimePlaceholder from "../../components/anime-placeholder";
 import TopBar from "../../components/top-bar";
+import { Player, BigPlayButton } from "video-react";
+
 export default function Anime() {
   const router = useRouter();
   const { anime } = router.query;
@@ -85,7 +87,13 @@ export default function Anime() {
                 </button>
               </div>
             </div>
+            <div className="mx-3 mb-5 rounded-xl overflow-hidden">
+              <Player playsInline poster={data.cover} src={data.themes[0].mirrors[0].mirror}>
+                <BigPlayButton position="center" />
+              </Player>
+            </div>
           </div>
+
           <ThemeAnime props={data} />
         </>
       ) : (
