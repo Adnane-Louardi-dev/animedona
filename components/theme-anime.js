@@ -6,6 +6,7 @@ import React, { useState, useRef } from "react";
 export default function ThemeAnime({ props }) {
   const [audioSrc, setAudioSrc] = useState("");
   const [PlayerOn, setPlayerOn] = useState(false);
+  const [PlayerHolderOn, setPlayerHolderOn] = useState(false);
   const audioRef = useRef(audioRef);
 
   return (
@@ -15,6 +16,7 @@ export default function ThemeAnime({ props }) {
           const { title, artist, type, theme_id } = theme;
           const play = () => {
             setPlayerOn(false);
+            setPlayerHolderOn(true);
             axios
               .get(`/api/v1/theme/${theme_id}/0/audio`)
               .then((res) => {
@@ -22,6 +24,7 @@ export default function ThemeAnime({ props }) {
                   const { data } = res;
                   setAudioSrc(data);
                   setPlayerOn(true);
+                  setPlayerHolderOn(false);
                   console.log(audioSrc);
                 } else {
                   console.log("no res");
@@ -55,11 +58,22 @@ export default function ThemeAnime({ props }) {
           );
         })}
       </div>
-      {PlayerOn ? (
-        <div className="fixed bottom-0 p-3 w-full">
-          <AudioPlayer ref={audioRef} autoPlay src={audioSrc.audio} showJumpControls />
-        </div>
-      ) : null}
+      <div className="fixed bottom-0 p-3 w-full">
+        {PlayerOn ? <AudioPlayer ref={audioRef} autoPlay src={audioSrc.audio} showJumpControls /> : null}
+        {PlayerHolderOn ? (
+          <div className="flex flex-col justify-between h-32 py-5 rounded-xl bg-gray-300 dark:bg-gray-700">
+            <div className="flex justify-between ">
+              <div className=" w-28 mx-4 px-2 py-1 whitespace-nowrap bg-yellow-600 dark:bg-yellow-600 rounded-xl text-white font-oxygen">Please wait...</div>
+              <div className="h-8 w-8 mx-4 bg-gray-400 dark:bg-gray-500 rounded-xl"></div>
+            </div>
+            <div className="flex ">
+              <div className="m-3 bg-gray-400 dark:bg-gray-500 h-2 grow rounded-full"></div>
+              <div className="bg-gray-400 dark:bg-gray-500 h-8 w-8 grow-0 rounded-full"></div>
+              <div className="m-3 bg-gray-400 dark:bg-gray-500 h-2 grow rounded-full"></div>
+            </div>
+          </div>
+        ) : null}{" "}
+      </div>
     </>
   );
 }
