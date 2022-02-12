@@ -1,5 +1,8 @@
 module.exports = {
   reactStrictMode: true,
+  env: {
+    googleAnalyticsID: "UA-220176845-1",
+  },
   images: {
     domains: ["cdn.myanimelist.net"],
   },
