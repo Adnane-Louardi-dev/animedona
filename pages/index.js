@@ -20,8 +20,8 @@ export default function Home({ Data }) {
   const [loading, setLoading] = useState(false);
   //data of all seasons
   const [data, setData] = useState([]);
-  //data of specific season
-  const [DataSeason, setDataSeason] = useState([]);
+  //set fall season as a initial data
+  const [DataSeason, setDataSeason] = useState(Data?.seasons[3].anime);
   //data of anime themes
   const [animeThemes, setAnimeThemes] = useState([]);
   //search input value
@@ -30,11 +30,6 @@ export default function Home({ Data }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    //set fall season as a initial data
-    setDataSeason(Data?.seasons[3].anime);
-
-    // setAnimeThemes([]);
-
     //create array that's contain cover,theme from Data info
     DataSeason?.slice(10, 15).map((anime) => {
       anime.themes.forEach((theme) => animeThemes.push({ cover: anime.cover, theme: theme }));
